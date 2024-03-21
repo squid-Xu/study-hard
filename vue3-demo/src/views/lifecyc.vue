@@ -10,8 +10,15 @@
   <div v-if="wt.count === 1" ref="wt">这是隐藏内容</div>
 
   <input type="text" ref="input" />
+  <ButtonCounter title="你好啊" @change="postFontSize += 1" />
+  <ButtonCounter />
+  <ButtonCounter />
+  <div :style="{ fontSize: postFontSize + 'px' }">测试字体大小</div>
+  <Child v-model="count" />
 </template>
 <script setup lang="ts">
+import ButtonCounter from '../components/ButtonCounter.vue'
+import Child from '../components/Child.vue'
 import {
   onBeforeMount,
   onBeforeUnmount,
@@ -26,6 +33,7 @@ import {
   watchPostEffect
 } from 'vue'
 
+const postFontSize = ref(10)
 const count = ref(0)
 const num = ref(0)
 
