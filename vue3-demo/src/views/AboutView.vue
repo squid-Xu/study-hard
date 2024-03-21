@@ -9,6 +9,7 @@
     <button @click="add">count++</button>
 
     <h2>{{ state.count }}</h2>
+    <button @click="stateAdd">stateAdd</button>
 
     <h3></h3>
   </div>
@@ -32,6 +33,10 @@ async function add() {
 }
 
 const state = reactive({ count: 0 })
+
+function stateAdd() {
+  state.count++
+}
 
 // Dom更新时机，修改状态时，Dom会自动更新，Dom更新不是同步的，Vue会在next tick 更新周期中缓冲所有的修改状态，不管你进行了多少次修改，每个组件都只会更新一次。
 

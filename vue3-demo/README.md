@@ -37,3 +37,14 @@ npm run build
 ```sh
 npm run lint
 ```
+
+# 条件渲染
+
+v-show 不支持在template上使用
+v-if和v-show不推荐同时使用，同时使用时，v-if会先执行
+
+# 列表渲染
+
+v-if和v-for不推荐同时使用，同时使用时，v-if优先级更高
+
+# 生命周期
