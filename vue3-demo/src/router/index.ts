@@ -26,6 +26,11 @@ const router = createRouter({
       path: '/lifecyc',
       name: 'Lifecyc',
       component: () => import('../views/lifecyc.vue')
+    },
+    {
+      path: '/20240322',
+      name: '20240322',
+      component: () => import('../views/20240322.vue')
     }
   ]
 })
