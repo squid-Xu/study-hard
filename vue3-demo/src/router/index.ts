@@ -31,6 +31,11 @@ const router = createRouter({
       path: '/20240322',
       name: '20240322',
       component: () => import('../views/20240322.vue')
+    },
+    {
+      path:'/provide-inject',
+      name:"provide-inject",
+      component:()=>import('../views/provide-inject/list.vue')
     }
   ]
 })
