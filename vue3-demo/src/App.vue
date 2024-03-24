@@ -17,6 +17,7 @@ import HelloWorld from './components/HelloWorld.vue'
       <RouterLink to="/lifecyc">lifecyc</RouterLink>
       <RouterLink to="/20240322">20240322</RouterLink>
       <RouterLink to="/provide-inject">provide-inject</RouterLink>
+      <RouterLink to="/composables">composables</RouterLink>
     </nav>
     <!-- </div> -->
   </header>
