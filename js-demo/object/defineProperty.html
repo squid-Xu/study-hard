@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let obj = {
+            count: 0,
+            list: [1, 2, 4],
+        };
+        let target = {};
+        for (let key in obj) {
+            Object.defineProperty(target, key, {
+                // value: obj[key],
+                // writable: true,
+                // enumerable: true,
+                // configurable: true
+                get: () => {
+                    return obj[key]
+                },
+                set: (val) => {
+                    console.log(val);
+                }
+            });
+        }
+        // target.count = 10
+        // delete target.count
+        // console.log(target.count);
+
+        // for (let key in target) {
+        //     console.log('key', key);
+        // }
+
+        let Person = {}
+        let temp = 'aa'
+        Object.defineProperty(Person, 'name', {
+            get: () => {
+                console.log("读取age属性");
+                return temp
+            },
+            set: (val) => {
+                console.log("修改age的值");
+                temp = val
+            }
+        })
+
+        console.log(Person.name);
+    </script>
+</body>
+
+</html>
