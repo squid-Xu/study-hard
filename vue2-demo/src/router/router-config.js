@@ -12,6 +12,6 @@ export const constantRouterMap = [
 	{
 		path: '/instruct',
 		component: () => import('../views/instruct/index.vue'),
-		meta: { title: '指令' },
+		meta: { title: 'vue修饰符' },
 	},
 ];
