@@ -9,4 +9,9 @@ export const constantRouterMap = [
 		component: () => import('../views/props/index.vue'),
 		meta: { title: '组件通信方式' },
 	},
+	{
+		path: '/instruct',
+		component: () => import('../views/instruct/index.vue'),
+		meta: { title: '指令' },
+	},
 ];
