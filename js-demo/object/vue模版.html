@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+
+        <h2>{{ message }}</h2>
+        {{ message }}
+        <p>{{b}}</p>
+    </div>
+    <!-- <script src="./vue.js"></script> -->
+    <script>
+        class Vue {
+            constructor(options) {
+                // console.log(options);
+                this.$el = document.querySelector(options.el)
+                // console.log(this.$el);
+                this.$data = options.data
+                this.compile(this.$el)
+            }
+            compile(node) {
+                // console.log(node);
+                // console.log(node.childNodes);
+                node.childNodes.forEach((item, index) => {
+                    // console.log(item);
+                    // console.log(item.nodeType);
+                    if (item.nodeType == 1) {
+                        console.log(item);
+                        this.compile(item)
+                    }
+                    if (item.nodeType == 3) {
+                        let reg = /\{\{(.*?)\}\}/g
+                        let text = item.textContent
+                        item.textContent = text.replace(reg, (match, vmKey) => {
+                            console.log(vmKey);
+                            vmKey = vmKey.trim()
+                            return this.$data[vmKey]
+                        })
+                    }
+                })
+            }
+        }
+    </script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                message: 'xxxx',
+                b: '1000'
+            }
+        })
+    </script>
+</body>
+
+</html>

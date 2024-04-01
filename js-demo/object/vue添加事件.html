@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h2>{{a}}</h2>
+        <button @click="handleClick">按钮</button>
+    </div>
+    <script>
+        class Vue {
+            constructor(options) {
+                // console.log(options);
+                this.$el = document.querySelector(options.el)
+                // console.log(this.$el);
+                this.$data = options.data
+                this.$options = options
+                this.$watchEvent = {}
+                this.proxyData();
+                this.observe()
+                this.compile(this.$el)
+            }
+
+            proxyData() {
+                for (let key in this.$data) {
+                    Object.defineProperty(this, key, {
+                        get() {
+                            return this.$data[key]
+                        },
+                        set(val) {
+                            this.$data[key] = val
+                        }
+                    })
+                }
+            }
+            observe() {
+                for (let key in this.$data) {
+                    let value = this.$data[key]
+                    let that = this
+                    Object.defineProperty(this.$data, key, {
+                        get() {
+                            return value
+                        },
+                        set(val) {
+                            value = val
+                            if (that.$watchEvent[key]) {
+                                that.$watchEvent[key].forEach((item, index) => {
+                                    item.update()
+                                })
+                            }
+                        }
+                    })
+                }
+            }
+            compile(node) {
+                // console.log(node);
+                // console.log(node.childNodes);
+                node.childNodes.forEach((item, index) => {
+                    // console.log(item);
+                    // console.log(item.nodeType);
+                    if (item.nodeType == 1) {
+                        if (item.hasAttribute('@click')) {
+                            item.addEventListener('click', (event) => {
+                                this.$options.methods[item.getAttribute('@click')].bind(this)(event)
+                            })
+                        }
+                        if (item.childNodes.length > 0)
+                            this.compile(item)
+                    }
+                    if (item.nodeType == 3) {
+                        let reg = /\{\{(.*?)\}\}/g
+                        let text = item.textContent
+                        item.textContent = text.replace(reg, (match, vmKey) => {
+                            vmKey = vmKey.trim()
+                            if (this.hasOwnProperty(vmKey)) {
+                                let watch = new Watch(this, vmKey, item, 'textContent')
+                                if (this.$watchEvent[vmKey]) {
+                                    this.$watchEvent[vmKey].push(watch)
+                                } else {
+                                    this.$watchEvent[vmKey] = []
+                                    this.$watchEvent[vmKey].push(watch)
+                                }
+                            }
+                            return this.$data[vmKey]
+                        })
+                    }
+                })
+            }
+        }
+        class Watch {
+            constructor(vm, key, node, attr) {
+                this.vm = vm;
+                this.key = key;
+                this.node = node;
+                this.attr = attr
+            }
+            update() {
+                console.log('----');
+                this.node[this.attr] = this.vm[this.key]
+            }
+        }
+        new Vue({
+            el: '#app',
+            data: {
+                a: 1
+            },
+            methods: {
+                handleClick(e) {
+                    this.a = 100
+                    console.log('按钮点击了', e, this, this.a);
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

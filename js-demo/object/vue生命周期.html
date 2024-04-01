@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+
+    </div>
+    <script>
+        class Vue {
+            constructor(options) {
+                if (typeof options.beforeCreate === 'function') {
+                    options.beforeCreate.bind(this)()
+                }
+                this.$data = options.data
+                if (typeof options.created === 'function') {
+                    options.created.bind(this)()
+                }
+                if (typeof options.beforeMount === 'function') {
+                    options.beforeMount.bind(this)()
+                }
+                this.$el = document.querySelector(options.el)
+                if (typeof options.mounted === 'function') {
+                    options.mounted.bind(this)()
+                }
+            }
+        }
+        new Vue({
+            el: '#app',
+            data: {
+                a: 1
+            },
+            beforeCreate() {
+                console.log('beforeCreate', this.$el, this.$data);
+            },
+            created() {
+                console.log('created', this.$el, this.$data);
+            },
+            beforeMount() {
+                console.log('beforeMount', this.$el, this.$data);
+            },
+            mounted() {
+                console.log('mounted', this.$el, this.$data);
+            },
+        })
+    </script>
+</body>
+
+</html>

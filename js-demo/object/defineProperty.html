@@ -3,53 +3,57 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
     <title>Document</title>
 </head>
 
 <body>
     <script>
-        let obj = {
-            count: 0,
-            list: [1, 2, 4],
-        };
-        let target = {};
-        for (let key in obj) {
-            Object.defineProperty(target, key, {
-                // value: obj[key],
-                // writable: true,
-                // enumerable: true,
-                // configurable: true
-                get: () => {
-                    return obj[key]
-                },
-                set: (val) => {
-                    console.log(val);
-                }
-            });
-        }
-        // target.count = 10
-        // delete target.count
-        // console.log(target.count);
+        //vue2
+        // let data = {
+        //     a: 1,
+        //     b: 2
+        // }
+        // let vue = {}
 
-        // for (let key in target) {
-        //     console.log('key', key);
+
+        // for (let key in data) {
+        //     Object.defineProperty(vue, key, {
+        //         get() {
+        //             console.log('获取');
+        //             return data[key]
+        //         },
+        //         set(val) {
+        //             console.log('设置');
+        //             data[key] = val
+        //         }
+        //     })
         // }
 
-        let Person = {}
-        let temp = 'aa'
-        Object.defineProperty(Person, 'name', {
-            get: () => {
-                console.log("读取age属性");
-                return temp
+        // data.a = 100
+        // console.log(vue);
+
+
+
+        //vue3
+        let data = {
+            a: 1,
+            b: 2
+        }
+
+        let vue = new Proxy(data, {
+            get(target, propKey, receiver) {
+                console.log('获取');
+                return Reflect.get(target, propKey, receiver)
             },
-            set: (val) => {
-                console.log("修改age的值");
-                temp = val
+            set(target, propKey, value, receiver) {
+                console.log('设置');
+                return Reflect.set(target, propKey, value, receiver)
             }
         })
 
-        console.log(Person.name);
+        vue.c = 3
+        console.log(vue.c);
     </script>
 </body>
 
