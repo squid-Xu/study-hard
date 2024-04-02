@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+
+        function Fun(age, name) {
+            this.age = age
+            this.name = name
+        }
+        // let fun = new Fun(18)
+
+
+        function create(fn, ...agrs) {
+
+            // console.log(fn, agrs);
+
+            //创建一个空对象
+            let obj = {}
+            //空对象的原型指向构造函数的原型
+            Object.setPrototypeOf(obj, fn.prototype)
+
+            // 将空对象作为构造函数的上下文，改变this指向
+
+            let res = fn.apply(obj, agrs)
+
+            //对构造函数返回值判断
+
+            return res instanceof Object ? res : obj
+
+        }
+
+        let fun = create(Fun, 18, '20')
+        console.log(fun)
+
+    </script>
+</body>
+
+</html>

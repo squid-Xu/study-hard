@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let a = 1
+        let obj = {
+            a: 10,
+        }
+        function Person() {
+            console.log(this.a);
+        }
+
+        // Person.call(obj)
+        // Person.apply(obj)
+        // Person.bind(obj)()
+
+
+        let arr1 = [
+            { a: 1, age: 18 },
+            { a: 5, age: 2 },
+            { a: 2, age: 50 }
+        ]
+
+        let arr2 = arr1.sort((a, b) => {
+            return a.age - b.age
+        })
+
+        console.log(arr2);
+    </script>
+</body>
+
+</html>

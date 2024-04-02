@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //一、原型继承
+        //子类的原型指向父类的一个实例
+        // function Person() {
+        //     this.a = 100
+        // }
+        // Person.prototype.getA = function () {
+        //     return this.a
+        // }
+
+        // function child() {
+        //     this.x = 1
+        // }
+        // child.prototype.getX = function () {
+        //     return this.x
+        // }
+
+        // child.prototype = new Person()
+
+
+
+
+        // call继承
+        //把父类当成普通函数执行，让其执行的时候，方法中的this变成子类的实例即可
+
+        // function Person() {
+        //     this.a = 100
+        // }
+        // Person.prototype.getA = function () {
+        //     return this.a
+        // }
+
+        // function child() {
+        //     Person.call(this)
+        //     this.x = 1
+        // }
+        // child.prototype.getX = function () {
+        //     return this.x
+        // }
+
+        //寄生组合继承
+        //call继承+变异版的原型继承共同完成
+        // function Person() {
+        //     this.a = 100
+        // }
+        // Person.prototype.getA = function () {
+        //     return this.a
+        // }
+
+        // function child() {
+        //     Person.call(this)
+        //     this.x = 1
+        // }
+        // child.prototype.getX = function () {
+        //     return this.x
+        // }
+
+        // child.prototype = Object.create(Person.prototype)
+
+        // child.prototype.constructor = child
+
+        //es6中的class类
+
+        class A {
+            constructor() {
+                this.x = 10
+            }
+            getX() {
+                return this.x
+            }
+        }
+
+        class B extends A {
+            constructor() {
+                super();
+                this.y = 20
+            }
+            getY() {
+                return this.y
+            }
+        }
+
+
+
+    </script>
+</body>
+
+</html>
