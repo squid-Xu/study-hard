@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>防抖和节流</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            width: 300px;
+            height: 200px;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box"></div>
+    <script>
+        //防抖
+        const debounce = (fun, wait = 500) => {
+            let timer;
+            return (...args) => {
+                if (timer) clearTimeout(timer)
+                timer = setTimeout(() => {
+                    fun(...args)
+                }, wait)
+            }
+        }
+        //节流
+        const throttle = (fun, wait = 500) => {
+            let timer;
+            return (...args) => {
+                if (!timer) {
+                    timer = setTimeout(() => {
+                        timer = null
+                        fun(...args)
+                    }, wait)
+                }
+            }
+        }
+        let box = document.getElementsByClassName('box')
+        // box[0].addEventListener('mouseover', debounce(() => {
+        //     console.log(new Date().getTime());
+        // }, 1000))
+        box[0].addEventListener('mouseover', throttle(() => {
+            console.log(new Date());
+        }, 1000))
+    </script>
+</body>
+
+</html>
