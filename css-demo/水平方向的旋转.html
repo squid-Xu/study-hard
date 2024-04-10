@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .cube {
+            width: 100px;
+            height: 100px;
+            margin: 50px;
+            transform-style: preserve-3d;
+            /* animation: rotate 5s infinite linear; */
+        }
+
+        .face {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: #f0f0f0;
+            border: 1px solid #000;
+            box-sizing: border-box;
+        }
+
+        .face.front {
+            transform: translateZ(50px);
+        }
+
+        .face.back {
+            transform: translateZ(-50px);
+        }
+
+        .face.right {
+            transform-origin: 0 50%;
+            transform: rotateY(90deg) translateZ(50px);
+        }
+
+        .face.left {
+            transform-origin: 100% 50%;
+            transform: rotateY(-90deg) translateZ(50px);
+        }
+
+        .face.top {
+            transform-origin: 50% 100%;
+            transform: rotateX(90deg) translateZ(50px);
+        }
+
+        .face.bottom {
+            transform-origin: 50% 0;
+            transform: rotateX(-90deg) translateZ(50px);
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotateX(0deg) rotateY(0deg);
+            }
+
+            100% {
+                transform: rotateX(360deg) rotateY(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="cube">
+        <div class="face front">前</div>
+        <div class="face back">后</div>
+        <div class="face right">右</div>
+        <div class="face left">左</div>
+        <div class="face top">上</div>
+        <div class="face bottom">下</div>
+    </div>
+</body>
+
+</html>

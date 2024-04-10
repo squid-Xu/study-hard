@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 200px;
+            height: 200px;
+            margin: 100px auto;
+            transform-style: preserve-3d;
+            perspective: 500;
+            position: relative;
+            /* transition: all 5s; */
+            animation: rotate 5s infinite linear;
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotate3d(0, 0, 0, 0deg)
+            }
+
+            100% {
+                transform: rotate3d(1, 1, 1, 360deg)
+            }
+        }
+
+        .container:hover {
+            transform: rotate3d(1, 1, 1, 360deg)
+        }
+
+        .box {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            font-size: 30px;
+            color: #ffff;
+            text-align: center;
+            line-height: 200px;
+        }
+
+        .front {
+            background-color: tomato;
+            transform: translateZ(100px);
+        }
+
+        .back {
+            background-color: blue;
+            transform: translateZ(-100px);
+        }
+
+        .left {
+            background-color: brown;
+            /* transform-origin: 100% 50%; */
+            transform: rotateY(-90deg) translateZ(100px);
+        }
+
+        .right {
+            background-color: hotpink;
+            transform: rotateY(90deg) translateZ(100px);
+        }
+
+        .top {
+            background-color: cadetblue;
+            transform: rotateX(90deg) translateZ(100px);
+        }
+
+        .bot {
+            background-color: chartreuse;
+            transform: rotateX(-90deg) translateZ(100px);
+        }
+
+        .box:hover {
+            /* 位移 */
+            /* transform: translate(100px, 100px); */
+            /* 旋转 */
+            /* transform-origin: right bottom; */
+            /* transform: rotate(45deg); */
+            /* 缩放 */
+            /* transform: scale(0.5, 2); */
+            /* 倾斜 */
+            /* transform: skew(0, 45deg); */
+
+
+            /* 3d移动 */
+            /* transform: translate3d(100px, 100px, 100px); */
+            /* 3d旋转 */
+            /* transform: rotate3d(0, 0, 1, 180deg); */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="box front">前</div>
+        <div class="box back">后</div>
+        <div class="box left">左</div>
+        <div class="box right">右</div>
+        <div class="box top">上</div>
+        <div class="box bot">下</div>
+    </div>
+</body>
+
+</html>
