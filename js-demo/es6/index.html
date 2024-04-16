@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const objA = {
+            a: 1,
+            age: 19
+        }
+
+        const objB = {
+            a: 2,
+            b: 3
+        }
+
+        const objC = Object.assign({}, objA, objB)
+        objA.age = 20;
+
+
+        console.log(objA, objB, objC);
+
+
+        const getSum = (...other) => { console.log(other); }
+
+        console.log(getSum(1, 2, 3, 3, 4, 4, 5, 6, 7, 6));
+    </script>
+</body>
+
+</html>
