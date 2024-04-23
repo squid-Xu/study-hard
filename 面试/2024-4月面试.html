@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4月面试题总结</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        #box {
+            width: 200px;
+            height: 200px;
+            background-color: aquamarine;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box"></div>
+    <script>
+
+
+        //new 操作符
+
+        function myNew(fn, ...args) {
+            const obj = {};
+            obj.__proto__ = fn.prototype;
+            const result = fn.apply(obj, args)
+            return result instanceof Object ? result : obj
+        }
+
+        function Person(name, age) {
+            this.name = name;
+            this.age = age;
+        }
+        Person.prototype.sayHello = function () {
+            console.log('hello');
+        }
+
+        const person = myNew(Person, '张三', 18);
+
+        console.log(person);
+        console.log(person.sayHello());
+
+        console.log(person.__proto__ === Person.prototype);
+
+        //防抖,连续点击只响应一次
+        const debounce = (fn, wait) => {
+            let timer = null;
+            return (...args) => {
+                if (timer) {
+                    clearTimeout(timer)
+                }
+                timer = setTimeout(() => {
+                    fn.apply(args)
+                }, wait)
+            }
+        }
+
+        //节流  一段时间触发一次
+
+        const throttle = (fn, wait) => {
+            let timer = null;
+            return (...args) => {
+                if (!timer) {
+                    timer = setTimeout(() => {
+                        timer = null
+                        fn.apply(args)
+                    }, wait)
+                }
+            }
+        }
+
+
+
+
+        function handleClick(a, b) {
+            console.log(new Date(), a, b);
+        }
+
+        // document.getElementById('box').addEventListener('click', debounce(handleClick, 1000))
+        document.getElementById('box').addEventListener('mousemove', throttle(handleClick, 1000))
+
+        //深拷贝
+
+        function deepClone(obj) {
+            let objClone = Array.isArray(obj) ? [] : {};
+            for (let key in obj) {
+                if (obj.hasOwnProperty(key)) {
+                    if (obj[key] instanceof Object) {
+                        objClone[key] = deepClone(obj[key])
+                    } else {
+                        objClone[key] = obj[key]
+                    }
+                }
+            }
+            return objClone
+        }
+
+        const objA = {
+            name: '李总',
+            age: 18,
+            a: {
+                n: 1
+            },
+            b: undefined,
+            c: null,
+            d: function () { },
+            e: Symbol('hello'),
+            f: {
+                n: 100
+            }
+        }
+
+        const objB = deepClone(objA)
+
+        console.log(objA, objB);
+
+    </script>
+</body>
+
+</html>

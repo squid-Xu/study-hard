@@ -23,14 +23,37 @@
         // } catch (error) {
         //     console.log(error);
         // }
-        console.log(window.obj.a);
+        // console.log(window.obj.a);
         // window.onerror = function (msg, url, line) {
         //     console.log(msg, url, line);
         // }
+        //创建一个new对象
+        function myNew(fn, ...args) {
+            const obj = {}
+            obj.__proto__ = fn.prototype;
+            // const result = fn.call(obj, ...args)
+            // const result = fn.apply(obj, args)
+            const result = fn.bind(obj, ...args)()
 
-        window.addEventListener('error', function (e) {
-            console.log(e);
-        })
+            return result instanceof Object ? result : obj
+        }
+
+
+        function Person(name, age) {
+            this.name = name;
+            this.age = age;
+        }
+
+        Person.prototype.sayHello = function () {
+            console.log('hello', this.name);
+        }
+
+        let person = myNew(Person, '张三', 18);
+        console.log(person.sayHello());
+
+        console.log(person.__proto__ === Person.prototype);
+
+
     </script>
 </body>
 
