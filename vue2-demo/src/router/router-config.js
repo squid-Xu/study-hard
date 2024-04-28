@@ -19,4 +19,15 @@ export const constantRouterMap = [
 		component: () => import('../views/vuex/index.vue'),
 		meta: { title: 'vuex' },
 	},
+	{
+		path: '/query-page-1',
+		component: () => import('../views/query-page/index-1.vue'),
+		meta: { title: 'query传值-1' },
+	},
+	{
+		path: '/query-page-2/:a/:b',
+		name: 'query-page-2',
+		component: () => import('../views/query-page/index-2.vue'),
+		meta: { title: 'query传值-2' },
+	},
 ];
