@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+        /* 
+        slice方法：第一个参数指定子字符串开始位置，第二个参数表示子字符串最后一个字符后面的位置 
+        substring方法：第一个参数指定子字符串开始位置，第二个参数表示子字符串最后一个字符后面的位置 
+        substr方法：第一个参数指定子字符串开始位置，第二个参数表示返回的字符个数 
+        这三个方法都会返回被操作字符串的一个子字符串，都接收一或两个参数 
+        如果没有给这些方法传递第二个参数，则将字符串的长度作为结束位置。这些方法也不会修改字符串本身，只是返回一个基本类型的字符串值 
+         */
+        // var str = "hello world";
+        // console.log(str.slice(3));//lo world 
+        // console.log(str.substring(3));//lo world 
+        // console.log(str.substr(3));//lo world 
+        // console.log(str.slice(3, 7));//lo w  7表示子字符串最后一个字符后面的位置  简单理解就是包含头不包含尾 
+        // console.log(str.substring(3, 7));//lo w 
+        // console.log(str.substr(3, 7));//lo worl 7表示返回7个字符 
+
+        // console.log(str.slice(3, -2));//lo w  -4+11=7表示子字符串最后一个字符后面的位置  简单理解就是包含头不包含尾 
+        // console.log(str.substring(3, -4));//hel  会转换为console.log(str.substring(3,0)); 
+        // //此外由于这个方法会将较小数作为开始位置，较大数作为结束位置，所以相当于调用console.log(str.substring(0,3)); 
+        // console.log(str.substr(3, -4));//""空字符串 
+        // console.log(str.substring(3, 0));
+
+        var arr = [1, 2, 3, 4, 5];
+        var res = arr.concat();
+        arr[0] = 0
+        console.log(res, arr);//[1,2,3,4,5,6,7]
+
+    </script>
+
+</body>
+
+</html>
