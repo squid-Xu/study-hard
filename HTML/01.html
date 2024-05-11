@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            /* 可继承 */
+            font-weight: bold;
+            color: red;
+            font-size: 30px;
+            line-height: 100px;
+            cursor: pointer;
+            /* //不可继承 */
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid blue;
+            /* display: none; */
+            background-color: aqua;
+        }
+
+        .yichu {
+            width: 100px;
+            line-height: 30px;
+            border: solid 1px darkcyan;
+            /* overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap; */
+
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+        }
+
+        .danwie {
+            width: 100vw;
+            height: 500px;
+            background-color: bisque;
+        }
+    </style>
+</head>
+
+<body>
+    <form>
+        <label for="email">邮箱</label>
+        <input type="email">
+        <label for="color">颜色</label>
+        <input type="color">
+        <button type="submit">提交</button>
+    </form>
+
+    <div class="box" id="hezi">
+        这是盒子
+        <div class="son">这是子元素</div>
+    </div>
+
+    <div class="yichu">
+        但是花花的世界活动时间打砂机说的很对上帝视角都是多少度是的是的
+        但是花花的世界活动时间打砂机说的很对上帝视角都是多少度是的是的
+    </div>
+
+    <div class="danwie"></div>
+
+    <script>
+
+        // const divDom = document.createElement('div')
+        // divDom.innerText = '测试'
+
+        // const pDom = document.createElement('p')
+        // pDom.innerHTML = 'p标签'
+
+        // divDom.appendChild(pDom)
+
+        // document.body.appendChild(divDom)
+
+
+
+        console.log(document.getElementById('hezi'))
+        console.log(document.getElementsByClassName('box')[0])
+        console.log(document.getElementsByTagName('div')[0]);
+        console.log(document.querySelector('.box'));
+        console.log(document.querySelectorAll('.box')[0]);
+
+    </scrip >
+
+</body >
+
+</html >
