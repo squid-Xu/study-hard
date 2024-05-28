@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .aa {
+            display: inline-block;
+            width: 200px;
+            height: 200px;
+            background-color: aqua;
+        }
+
+        .float {
+            float: right;
+        }
+
+        .bb {
+            width: 100%;
+            height: 100px;
+            overflow: hidden;
+            background-color: red;
+        }
+
+        /* 1、可以避免外边距重叠 */
+        /* 2、清除浮动 */
+        /* 3、阻止元素被浮动元素覆盖 */
+    </style>
+</head>
+
+<body>
+    <span class="aa">1</span>
+    <span class="aa">2</span>
+    <span class="aa">3</span>
+    <span class="aa float">4</span>
+
+    <div class="bb">5</div>
+    <div class="bb">6</div>
+</body>
+
+</html>
