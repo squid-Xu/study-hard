@@ -54,4 +54,46 @@ UMD 是 AMD 和 CommonJS 的一个糅合。
 ## AMD 和 CMD 的区别
 
 1、对于依赖的模块，AMD 是提前执行，CMD 是延迟执行
-2、AMD
+2、AMD 依赖前置，CMD 依赖就近
+
+## ES6 模块与 CommonJS 模块的差异
+
+1、CommonJS 模块输出的是一个 值的拷贝，ES6 模块输出的是 值的引用。
+2、CommonJS 模块是运行时加载，ES6 模块是编译时输出接口。
+3、CommonJS 模块的 require() 是 同步加载 模块，ES6 模块的 import 命令是 异步加载，有一个独立的模块依赖的解析阶段。
+
+# 数据类型检测方法
+
+## typeof
+
+```js
+// 其中数组、对象、null都会被判断为object，其他判断都正确。
+console.log(typeof null); // object
+console.log(typeof function () {}); // function
+```
+
+## instanceof
+
+```js
+// instanceof只能正确判断引用数据类型，而不能判断基本数据类型
+console.log(2 instanceof Number); // false
+console.log(true instanceof Boolean); // false
+console.log('str' instanceof String); // false
+console.log([] instanceof Array); // true
+console.log(function () {} instanceof Function); // true
+console.log({} instanceof Object); // true
+```
+
+## constructor
+
+```js
+// constructor有两个作用，一是判断数据的类型，二是对象实例通过 constrcutor 对象访问它的构造函数。需要注意，如果创建一个对象来改变它的原型，constructor就不能用来判断数据类型了：
+console.log((2).constructor === Number); // true
+console.log(true.constructor === Boolean); // true
+console.log('str'.constructor === String); // true
+console.log([].constructor === Array); // true
+console.log(function () {}.constructor === Function); // true
+console.log({}.constructor === Object); // true
+```
+
+## Object.prototype.toString.call()
