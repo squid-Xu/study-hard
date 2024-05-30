@@ -97,3 +97,68 @@ console.log({}.constructor === Object); // true
 ```
 
 ## Object.prototype.toString.call()
+
+# 判断数组的方法
+
+```js
+Object.prototype.toString.call();
+instanceof ;
+isArrary;
+__proto__;
+Arrary.prototype.isPrototypeOf()
+```
+
+# new 操作符的实现原理
+
+1、首先创建一个空对象
+2、设置原型，将对象的原型设置为函数的 prototype 对象
+3、让函数的 this 指向这个对象，执行构造函数的代码
+4、判断函数的返回值类型，值类型，返回创建的对象，引用类型就返回
+
+```js
+function Person(name) {
+	this.name = name;
+}
+
+let p = new Person('000');
+console.log(p);
+
+function cerate(fn, ...args) {
+	let obj = {};
+	obj.__proto__ = fn.prototype;
+	let res = fn.apply(obj, args);
+	return res instanceof Object ? res : obj;
+}
+
+let h = cerate(Person, '1111');
+console.log(h);
+```
+
+# for in 和 for of 的区别
+
+for…of 遍历获取的是对象的键值，for…in 获取的是对象的键名；
+for… in 会遍历对象的整个原型链，性能非常差不推荐使用，而 for … of 只遍历当前对象不会遍历原型链；
+对于数组的遍历，for…in 会返回数组中所有可枚举的属性(包括原型链上可枚举的属性)，for…of 只返回数组的下标对应的属性值；
+总结： for...in 循环主要是为了遍历对象而生，不适用于遍历数组；for...of 循环可以用来遍历数组、类数组对象，字符串、Set、Map 以及 Generator 对象。
+
+正常情况下 对象(Object)没有 iterator 接口，不能用 for of 遍历。
+
+# Promise.all 和 Promise.race 的区别的使用场景
+
+Promise.all 可以将多个 Promise 实例包装成一个新的 Promise 实例。同时，成功和失败的返回值是不同的，成功的时候返回的是一个结果数组，而失败的时候则返回最先被 reject 失败状态的值。
+
+Promse.race 就是赛跑的意思，意思就是说，Promise.race([p1, p2, p3])里面哪个结果获得的快，就返回那个结果，不管结果本身是成功状态还是失败状态。当要做一件事，超过多长时间就不做了，可以用这个方法来解决：
+
+# ES6
+
+Map 和 Set，引入了两种新的数据结构，分别用于存储键值对和唯一值
+
+# 你能举出一个柯里化函数（curry function）的例子吗？它有哪些好处？
+
+柯里化（currying）是一种模式，其中具有多个参数的函数被分解为多个函数，当被串联调用时，将一次一个地累积所有需要的参数。这种技术帮助编写函数式风格的代码，使代码更易读、紧凑。
+
+# js 设计模式有哪些？
+
+创建型模式，共五种：工厂方法模式、抽象工厂模式、单例模式、建造者模式、原型模式。
+结构型模式，共七种：适配器模式、装饰器模式、代理模式、外观模式、桥接模式、组合模式、享元模式。
+行为型模式，共十一种：策略模式、模板方法模式、观察者模式/发布订阅模式、迭代子模式、责任链模式、命令模式、备忘录模式、状态模式、访问者模式、中介者模式、解释器模式。

@@ -1,41 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+	<body>
+		<script>
+			//typeof
+			// console.log(typeof 12);
+			// console.log(typeof undefined);
+			// console.log(typeof null);
+			// console.log(typeof function () { })
 
-<body>
-    <script>
+			// instanceof
 
-        //typeof
-        // console.log(typeof 12);
-        // console.log(typeof undefined);
-        // console.log(typeof null);
-        // console.log(typeof function () { })
+			// console.log(2 instanceof Number);
+			// console.log(false instanceof Boolean);
+			// console.log('sss' instanceof String);
+			// console.log([] instanceof Array);
+			// console.log({} instanceof Object);
+			// console.log(function () { } instanceof Function);
 
+			// constructor
 
-        // instanceof
+			// console.log((2).constructor === Number);
+			// console.log((true).constructor === Boolean);
+			// console.log(('sss').constructor === String);
+			// console.log(([]).constructor === Array);
+			// console.log((function () { }).constructor === Function);
+			// console.log(({}).constructor === Object);
 
-        // console.log(2 instanceof Number);
-        // console.log(false instanceof Boolean);
-        // console.log('sss' instanceof String);
-        // console.log([] instanceof Array);
-        // console.log({} instanceof Object);
-        // console.log(function () { } instanceof Function);
+			// console.log((Object.prototype.toString.call([])).slice(8, -1));
 
+			function Person(name) {
+				this.name = name;
+			}
 
-        // constructor
+			let p = new Person('000');
+			console.log(p);
 
-        console.log((2).constructor === Number);
-        console.log((true).constructor === Boolean);
-        console.log(('sss').constructor === String);
-        console.log(([]).constructor === Array);
-        console.log((function () { }).constructor === Function);
-        console.log(({}).constructor === Object);
-    </script>
-</body>
+			function cerate(fn, ...args) {
+				let obj = {};
+				obj.__proto__ = fn.prototype;
+				let res = fn.apply(obj, args);
+				return res instanceof Object ? res : obj;
+			}
 
+			let h = cerate(Person, '1111');
+			console.log(h);
+
+			const p1 = Promise.resolve(1);
+			const p2 = Promise.reject(2);
+
+			Promise.race([p2, p1])
+				.then(res => {
+					console.log(res);
+				})
+				.catch(err => {
+					console.log(err);
+				});
+
+			let obj1 = {
+				a: 1,
+				b: 2,
+			};
+
+			for (val of obj1) {
+				console.log(val);
+			}
+		</script>
+	</body>
 </html>
