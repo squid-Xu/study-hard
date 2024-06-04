@@ -29,11 +29,13 @@
 
 ## UMD 规范（ 通用模块定义）
 
-UMD 是 AMD 和 CommonJS 的一个糅合。
+UMD 是 AMD 和 CommonJS 的一个糅合。AMD 是浏览器优先，异步加载；CommonJS 是服务器优先，同步加载
 
 那就先判断是否支持 node 的模块，支持就使用 node；再判断是否支持 AMD，支持则使用 AMD 的方式加载。这就是所谓的 UMD。
 
 ## CMD 规范（公共模块定义）
+
+CMD 可能是在 CommonJS 之后抽象出来的一套模块化语法定义和使用的标准。
 
 在 CMD 规范中，一个模块就是一个文件。
 我们可以通过 SeaJs 的 use 方法加载模块:
