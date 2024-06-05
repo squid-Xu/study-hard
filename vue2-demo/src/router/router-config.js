@@ -30,4 +30,10 @@ export const constantRouterMap = [
 		component: () => import('../views/query-page/index-2.vue'),
 		meta: { title: 'query传值-2' },
 	},
+	{
+		path: '/attrs',
+		name: 'attrs',
+		component: () => import('../views/attrs/list.vue'),
+		meta: { title: '透传' },
+	},
 ];

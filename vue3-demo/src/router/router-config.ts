@@ -8,5 +8,11 @@ export const constantRouterMap = [
     path: '/props',
     component: () => import('../views/props/index.vue'),
     meta: { title: '组件通信方式' }
+  },
+  {
+    path: '/attrs',
+    name: 'attrs',
+    component: () => import('../views/attrs/list.vue'),
+    meta: { title: '透传' }
   }
 ]
